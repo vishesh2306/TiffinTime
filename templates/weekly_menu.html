@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href={% static "css/menu_styles.css"%} />
+    <title>Weekly Menu</title>
+
+  </head>
+  <body>
+ 
+    <div class="card">
+      <div class="card-image"></div>
+      <div class="card-text">
+        <span class="date"></span>
+        <a href="/core/product/{{ breakfast.category_id }}">
+        <h2>Breakfast</h2>
+        </a>
+        <tr><td>Monday : </td><td>{{ breakfast.monday }}</td></tr><br>
+        <tr><td>Tuesday : </td><td>{{ breakfast.tuesday }}</td></tr><br>
+        <tr><td>Wednesday : </td><td>{{ breakfast.wednesday }}</td></tr><br>
+        <tr><td>Thursday : </td><td>{{ breakfast.thursday }}</td></tr><br>
+        <tr><td>Friday : </td><td>{{ breakfast.friday }}</td></tr><br>
+        <tr><td>Saturday : </td><td>{{ breakfast.saturday }}</td></tr><br>
+        
+      </div>
+      <div class="card-stats card1">
+      <div class="stat">
+        <br>
+          <tr><td>Sunday Special : </td><td>{{ breakfast.sunday }}</td></tr><br>
+         </div>
+          </div>
+    </div>
+    <div class="card">
+      <div class="card-image card2"></div>
+      <div class="card-text card2">
+        <span class="date"></span>
+         <a href="/core/product/{{ lunch.category_id }}">
+         <h2>Lunch</h2>
+         </a>
+       <tr><td>Monday : </td><td>{{ lunch.monday }}</td></tr><br>
+        <tr><td>Tuesday : </td><td>{{ lunch.tuesday }}</td></tr><br>
+        <tr><td>Wednesday : </td><td>{{ lunch.wednesday }}</td></tr><br>
+        <tr><td>Thursday : </td><td>{{ lunch.thursday }}</td></tr><br>
+        <tr><td>Friday : </td><td>{{ lunch.friday }}</td></tr><br>
+        <tr><td>Saturday : </td><td>{{ lunch.saturday }}</td></tr><br>
+        
+      </div>
+      <div class="card-stats card2">
+      <div class="stat">
+        <br>
+          <tr><td>Sunday Special : </td><td>{{ lunch.sunday }}</td></tr><br>
+         </div>
+          </div>
+    </div>
+    <div class="card">
+        <div class="card-image card3"></div>
+        <div class="card-text card3">
+          <span class="date"></span>
+          <a href="/core/product/{{ dinner.category_id }}">
+          <h2>Dinner</h2>
+          </a>
+          <tr><td>Monday : </td><td>{{ dinner.monday }}</td></tr><br>
+        <tr><td>Tuesday : </td><td>{{ dinner.tuesday }}</td></tr><br>
+        <tr><td>Wednesday : </td><td>{{ dinner.wednesday }}</td></tr><br>
+        <tr><td>Thursday : </td><td>{{ dinner.thursday }}</td></tr><br>
+        <tr><td>Friday : </td><td>{{ dinner.friday }}</td></tr><br>
+        <tr><td>Saturday : </td><td>{{ dinner.saturday }}</td></tr><br>
+        
+      </div>
+      <div class="card-stats card3">
+      <div class="stat">
+        <br>
+          <tr><td>Sunday Special : </td><td>{{ dinner.sunday }}</td></tr><br>
+         </div>
+          </div>
+    </div>
+  </body>
+</html>

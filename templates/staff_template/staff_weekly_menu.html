@@ -1,0 +1,55 @@
+{% extends 'staff_template/base_template.html' %}
+{% load widget_tweaks %}
+{% block page_title %}
+Weekly Menu
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Weekly Menu</h3>
+              </div>
+            <form action="{% url 'staff_weekly_menu' %}" method="POST" enctype='multipart/form-data' novalidate>
+                      {% csrf_token %}
+                       <div class="card-body">
+                         {% for field in form.visible_fields %}
+                           <div class="form-group">
+                               {{ field.label_tag }}
+                                  {% render_field field class="form-control" %}
+                                    {% for error in field.errors %}
+                                      <span style="color:red">{{ error }}</span>
+                                    {% endfor %}
+                         {% endfor %}
+                         <div class="form-group">
+                      {% if messages %}
+                         {% include 'messages.html' %}
+                      {% endif %}
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+                <div class="card-footer">
+                             <input type="submit" value="{{ submit }}" class="btn btn-block btn-primary">
+                </div>
+            </form>
+            </div>
+        </div>
+          </div>  
+          
+          
+               </table>
+               </div>
+            </div>
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
+

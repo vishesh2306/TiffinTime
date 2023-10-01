@@ -1,0 +1,324 @@
+{% load cart_template_tags %}
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Tiffin Time</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Staple Food Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+{% load static %}
+<link href={% static "css/bootstrap.css"%} type="text/css" rel="stylesheet" media="all">
+<link href={% static "css/style.css"%} type="text/css" rel="stylesheet" media="all">  
+<link href={% static "css/font-awesome.css"%} rel="stylesheet"> <!-- font-awesome icons -->
+<link rel="stylesheet"  href={% static "css/owl.carousel.css"%} type="text/css" media="all"/> <!-- Owl-Carousel-CSS -->
+<!-- //Custom Theme files --> 
+<!-- js -->
+<script src={% static "js/jquery-2.2.3.min.js" %}></script>  
+<!-- //js -->
+<!-- web-fonts -->   
+<link href={% static "//fonts.googleapis.com/css?family=Berkshire+Swash" %}rel="stylesheet"> 
+<link href={% static "//fonts.googleapis.com/css?family=Yantramanav:100,300,400,500,700,900" %}rel="stylesheet">
+<!-- //web-fonts -->
+</head>
+<body> 
+	<!-- banner -->
+	<div class="banner">
+		<!-- header -->
+		<div class="header">
+			<div class="w3ls-header"><!-- header-one --> 
+				<div class="container">
+					<div class="w3ls-header-left">
+						<p>Free home delivery at your doorstep For Above Rs.1000</p>
+					</div>
+					<div class="w3ls-header-right">
+						<ul class="navbar-nav nav-flex-icons">
+          
+         
+            {% if user.is_authenticated %}
+			{% if user.is_customer %}
+            <li class="nav-item">
+                <a href="{% url 'core:order-summary' %}" class="nav-link waves-effect">
+                {% if request.user|cart_item_count != 0 %}
+                  <span class="badge white z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>
+                {% endif %}
+				<div class="cart cart box_1">
+                <i class="fa fa-shopping-cart"></i>
+                </a>
+				</div>
+            </li>
+            <li class="nav-item">
+                 <a href="{% url 'customer_home' %}" class="nav-link waves-effect">
+                Hi {{ user.username }}!
+                </a>
+            </li>
+             <li class="head-dpdn">
+								<a href="\accounts\logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+							</li> 
+			{% else %}
+            <li class="nav-item">
+            </li>
+            <li class="nav-item">
+                 <a href="{% url 'staff_home' %}" class="nav-link waves-effect">
+                Hi {{ user.username }}!
+                </a>
+            </li>
+             <li class="head-dpdn">
+								<a href="\accounts\logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+							</li> 
+
+            {% endif %}
+            {% else %}
+			<li class="head-dpdn">
+								<i class="fa fa-phone" aria-hidden="true"></i> Call us: +01 222 33345 
+							</li> 
+			<li class="head-dpdn">
+								<a href="\accounts\login"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+							</li> 
+							<li class="head-dpdn">
+								<a href="\accounts\customer_register"><i class="fa fa-user-plus" aria-hidden="true"></i> Signup</a>
+							</li> 
+            {% endif %}
+        </ul>
+
+					</div>
+					<div class="clearfix"> </div> 
+				</div>
+			</div>
+			<!-- //header-one -->    
+			<!-- navigation -->
+			<div class="navigation agiletop-nav">
+				<div class="container">
+					<nav class="navbar navbar-default">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header w3l_logo">
+							<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>  
+							<h1><a href="/home">Tiffin Time<span>Best Home-Made Food Collection</span></a></h1>
+						</div> 
+						<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="/home" class="active">Home</a></li>	
+								<!-- Mega Menu -->
+								<li class="dropdown">
+									<a href="/core" class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b></a>
+									<ul class="dropdown-menu multi-column columns-3">
+										<div class="row">
+											<div class="col-sm-4">
+												<ul class="multi-column-dropdown">
+													<h6>Food type</h6>  
+													<li><a href="/core?">All Day Menu</a></li> 
+													<li><a href="/core?category=1">Breakfast</a></li> 
+													<li><a href="/core?category=2">Lunch</a></li> 
+													<li><a href="/core?category=3">Dinner</a></li> 
+												</ul>
+											</div>
+											
+											<div class="col-sm-4">
+												<ul class="multi-column-dropdown">
+													<h6>Food</h6> 
+													<li><a href="/Menu">Veg</a></li> 
+													<li><a href="/Menu">Non-veg</a></li> 
+												</ul>
+											</div> 
+											<div class="clearfix"></div>
+										</div>
+									</ul>
+								</li>
+								{% if user.is_authenticated %}
+                                 <li><a href="/about">About</a></li> 
+								 <li><a href="/accounts/contact">Contact Us</a></li>
+								{% else %}
+								<li><a href="/about">About</a></li> 
+								<li class="w3pages"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Vender <span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="accounts\employee_register\">Register</a></li>
+										<li><a href="accounts\login1">Login</a></li>     
+									</ul>
+								</li>  
+								<li><a href="/accounts/contact">Contact Us</a></li>
+								{% endif %}
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+			<!-- //navigation --> 
+		</div>
+		<!-- //header-end --> 
+		<div class="banner-text">	
+			<div class="container">
+				<h2>Delicious home made food <br> <span>just for you</span></h2>
+			</div>
+		</div>
+	</div>
+	<!-- //banner -->    
+	<!-- breadcrumb -->  
+	<div class="container">	
+		<ol class="breadcrumb w3l-crumbs">
+			<li><a href="/home"><i class="fa fa-home"></i> Home</a></li> 
+			<li class="active">Terms & Conditions</li>
+		</ol>
+	</div>
+	<!-- //breadcrumb -->
+	<!-- privacy-page -->
+	<div class="privacy about">
+		<div class="container"> 
+			<h3 class="w3ls-title w3ls-title1">Terms & Conditions</h3>  
+			<div class="privacy-w3row">
+				<p>This website is operated by Tiffin Time food service. Throughout the site, the terms “we”, “us” and “our” refer to Tiffin Time food service. Tiffin Time food service offers this website, including all information, tools and services available from this site to you, the user, conditioned upon your acceptance of all terms, conditions, policies and notices stated here.</p>
+
+<p>By visiting our site and/ or purchasing something from us, you engage in our “Service” and agree to be bound by the following terms and conditions (“Terms of Service”, “Terms”), including those additional terms and conditions and policies referenced herein and/or available by hyperlink. These Terms of Service apply to all users of the site, including without limitation users who are browsers, vendors, customers, merchants, and/ or contributors of content.</p>
+
+<p>Please read these Terms of Service carefully before accessing or using our website. By accessing or using any part of the site, you agree to be bound by these Terms of Service. If you do not agree to all the terms and conditions of this agreement, then you may not access the website or use any services. If these Terms of Service are considered an offer, acceptance is expressly limited to these Terms of Service.</p>
+
+				<h5>PRICES AND PAYMENT</h5>  
+				<p> All payments from Users made through the website shall be made via such payment processor as Tiffin Time may choose (“Payment Processor”) , who will remit to you:
+<p>1.1. the amount received from the Users in respect of the Order (“Sale Price”);</p>
+<p>1.2. less any fees charged by the Payment Processor; and</p>
+<p>1.3. less our commission at the rate notified to you during the registration process (“Commission”),</p>
+<p>within thirty (30) days of receipt of the applicable payment by Tiffin Time from the Payment Processor.</p>
+<p>Where a User requests a refund, the Home Seller shall comply with the Refund Policy set out in Section B or such other policy as the Home Seller may notify the User in writing. Where the User is entitled to a refund under the Refund Policy, the Home Seller shall refund the Sale Price less the Commission (“Refund Monies”) to Tiffin Time immediately. WatsCooking.com shall refund the Sale Price to the User within 5 days of receipt of the Refund Monies.</p>
+<p>You shall pay all other fees and charges notified to you during the registration process (“Fees”). The Fees shall be due and payable in accordance with the payment terms notified to you during registration. The Fees are exclusive of VAT and other sales tax which shall, where applicable, be paid in addition.</p>
+<p>We may change the Commission and/or Fees at any time on the provision of notice to you in writing, by email or through your use of the website. Your continued use of the website following notice of such change shall be deemed to be your acceptance of the new Commission and/or Fees. If you do not agree with the changes to the Commission and/or Fees, you may terminate your agreement with us by notice in writing or by email.
+</p>			
+				<h5>SECURITY</h5>  
+				<p>Tiffin Time complies with the Data Protection Act 1998 and all other successor legislation and regulations in the performance of its obligations under these Terms. The terms of the Privacy Policy form part of these Terms and you agree to be bound by them.</p>
+				<h5>ONLINE STORE TERMS</h5>  
+				<P>By agreeing to these Terms of Service, you represent that you are at least the age of majority in your state or province of residence, or that you are the age of majority in your state or province of residence and you have given us your consent to allow any of your minor dependents to use this site.
+You may not use our products for any illegal or unauthorized purpose nor may you, in the use of the Service, violate any laws in your jurisdiction (including but not limited to copyright laws).
+You must not transmit any worms or viruses or any code of a destructive nature.
+A breach or violation of any of the Terms will result in an immediate termination of your Services.</P>
+			</div>
+		</div>
+	</div>
+	<!-- //privacy-page -->  
+		<!-- footer -->
+	<div class="footer agileits-w3layouts">
+		<div class="container">
+			<div class="w3_footer_grids">
+				<div class="col-xs-6 col-sm-3 footer-grids w3-agileits">
+					<h3>company</h3>
+					<ul>
+						<li><a href="/about">About Us</a></li>
+						<li><a href="/contact">Contact Us</a></li>  
+						<li><a href="/careers">Careers</a></li>  
+						<li><a href="/help">Partner With Us</a></li>   
+					</ul>
+				</div> 
+				<div class="col-xs-6 col-sm-3 footer-grids w3-agileits">
+					<h3>help</h3>
+					<ul>
+						<li><a href="/faq">FAQ</a></li> 
+						<li><a href="/accounts/login">Returns</a></li>   
+						<li><a href="/accounts/login">Order Status</a></li> 
+						<li><a href="/offers">Offers</a></li> 
+					</ul>  
+				</div>
+				<div class="col-xs-6 col-sm-3 footer-grids w3-agileits">
+					<h3>policy info</h3>
+					<ul>  
+						<li><a href="/terms">Terms & Conditions</a></li>  
+						<li><a href="/privacy">Privacy Policy</a></li>
+						<li><a href="/accounts/login">Return Policy</a></li> 
+					</ul>   
+				</div>
+				<div class="col-xs-6 col-sm-3 footer-grids w3-agileits">
+					<h3>Menu</h3> 
+					<ul>
+						<li><a href="/Menu">All Day Menu</a></li> 
+						<li><a href="/Menu">Breakfast</a></li> 
+						<li><a href="/Menu">Lunch</a></li>
+						<li><a href="/Menu">Dinner</a></li>
+						
+					</ul>  
+				</div> 
+				<div class="clearfix"> </div>
+			</div>
+		</div> 
+	</div>
+	<div class="copyw3-agile"> 
+		<div class="container">
+			<p>&copy; Tiffin Time. All rights reserved | </a></p>
+		</div>
+	</div>
+	<!-- //footer --> 
+	<!-- cart-js -->
+	<script src={% static "js/minicart.js" %}></script>
+	<script>
+        w3ls.render();
+
+        w3ls.cart.on('w3sb_checkout', function (evt) {
+        	var items, len, i;
+
+        	if (this.subtotal() > 0) {
+        		items = this.items();
+
+        		for (i = 0, len = items.length; i < len; i++) { 
+        		}
+        	}
+        });
+    </script>  
+	<!-- //cart-js -->	
+	<!-- Owl-Carousel-JavaScript -->
+	<script src={% static "js/owl.carousel.js" %}></script>
+	<script>
+		$(document).ready(function() {
+			$("#owl-demo").owlCarousel ({
+				items : 3,
+				lazyLoad : true,
+				autoPlay : true,
+				pagination : true,
+			});
+		});
+	</script>
+	<!-- //Owl-Carousel-JavaScript -->  
+	<!-- start-smooth-scrolling -->
+	<script src={% static "js/SmoothScroll.min.js" %}></script>  
+	<script type="text/javascript" src={% static "js/move-top.js" %}></script>
+	<script type="text/javascript" src={% static "js/easing.js" %}></script>	
+	<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+			
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+	</script>
+	<!-- //end-smooth-scrolling -->	  
+	<!-- smooth-scrolling-of-move-up -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+			var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+			};
+			*/
+			
+			$().UItoTop({ easingType: 'easeOutQuart' });
+			
+		});
+	</script>
+	<!-- //smooth-scrolling-of-move-up --> 
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src={% static "js/bootstrap.js" %}></script>
+</body>
+</html>

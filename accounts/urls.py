@@ -1,0 +1,56 @@
+from django.urls import path
+from . import  views,StaffViews,CustomerViews
+
+
+urlpatterns=[
+     path('',views.index),
+     path('customer_register/',views.customer_register.as_view(), name='customer_register'),
+     path('employee_register/',views.employee_register.as_view(), name='employee_register'),
+     path('login/',views.login_request, name='login'),
+     path('login1/',views.login_request1, name='login1'),
+     path('logout/',views.logout_view, name='logout'),
+     path('contact/',views.contact.as_view(), name='contact'),
+     path('staff_home', StaffViews.staff_home, name="staff_home"),
+     path('staff_account', StaffViews.staff_account, name="staff_account"),
+     path('staff_account_save', StaffViews.staff_account_save, name="staff_account_save"),
+     path('view_orders', StaffViews.view_orders, name="view_orders"),
+     path('my_menu', StaffViews.my_menu, name="my_menu"),
+     path('staff_menu', StaffViews.staff_menu, name="staff_menu"),
+     path('staff_weekly_menu', StaffViews.staff_weekly_menu, name="staff_weekly_menu"),
+  #  path('get_attendance_customer', StaffViews.get_attendance_customer, name="get_attendance_customer"),
+   # path('save_attendance_data', StaffViews.save_attendance_data, name="save_attendance_data"),
+  #  path('save_updateattendance_data', StaffViews.save_updateattendance_data, name="save_updateattendance_data"),
+    #path('staff_apply_leave', StaffViews.staff_apply_leave, name="staff_apply_leave"),
+    #path('staff_apply_leave_save', StaffViews.staff_apply_leave_save, name="staff_apply_leave_save"),
+    path('staff_feedback', StaffViews.staff_feedback, name="staff_feedback"),
+    path('staff_feedback_save', StaffViews.staff_feedback_save, name="staff_feedback_save"),
+    path('staff_profile', StaffViews.staff_profile, name="staff_profile"),
+    path('staff_profile_save', StaffViews.staff_profile_save, name="staff_profile_save"),
+    #path('staff_fcmtoken_save', StaffViews.staff_fcmtoken_save, name="staff_fcmtoken_save"),
+    path('staff_all_notification', StaffViews.staff_all_notification, name="staff_all_notification"),
+    #path('staff_add_result', StaffViews.staff_add_result, name="staff_add_result"),
+    #path('save_customer_result', StaffViews.save_customer_result, name="save_customer_result"),
+   # path('edit_customer_result',EditResultViewClass.as_view(), name="edit_customer_result"),
+   # path('fetch_result_customer',StaffViews.fetch_result_customer, name="fetch_result_customer"),
+  #  path('start_live_classroom',StaffViews.start_live_classroom, name="start_live_classroom"),
+ #   path('start_live_classroom_process',StaffViews.start_live_classroom_process, name="start_live_classroom_process"),
+
+
+    path('customer_home', CustomerViews.customer_home, name="customer_home"),
+    path('customer_order_history', CustomerViews.customer_order_history, name="customer_order_history"),
+    path('customer_order_information', CustomerViews.customer_order_information, name="customer_order_information"),
+    #path('customerapply_leave', CustomerViews.customerapply_leave, name="customerapply_leave"),
+    #path('customerapply_leave_save', CustomerViews.customerapply_leave_save, name="customerapply_leave_save"),
+    path('customer_feedback', CustomerViews.customer_feedback, name="customer_feedback"),
+    path('customer_feedback_save', CustomerViews.customer_feedback_save, name="customer_feedback_save"),
+    path('customer_profile', CustomerViews.customer_profile, name="customer_profile"),
+    path('customer_profile_save', CustomerViews.customer_profile_save, name="customer_profile_save"),
+    #path('customerfcmtoken_save', CustomerViews.customerfcmtoken_save, name="customerfcmtoken_save"),
+    #path('firebase-messaging-sw.js',views.showFirebaseJS,name="show_firebase_js"),
+    path('customer_all_notification',CustomerViews.customer_all_notification,name="customer_all_notification"),
+    #path('customerview_result',CustomerViews.customerview_result,name="customerview_result"),
+    #path('join_class_room/<int:subject_id>/<int:session_year_id>',CustomerViews.join_class_room,name="join_class_room"),
+    #path('node_modules/canvas-designer/widget.html',StaffViews.returnHtmlWidget,name="returnHtmlWidget"),
+    path('testurl/',views.Testurl)
+
+]

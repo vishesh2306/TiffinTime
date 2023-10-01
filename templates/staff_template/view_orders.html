@@ -1,0 +1,236 @@
+{% extends 'staff_template/base_template.html' %}
+{% load filter_tags %}
+{% block page_title %}
+Orders
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+             
+
+            <!-- /.card -->
+           <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Orders</h3>
+              </div>
+            
+               <div class="table">
+               <table class="table" id="myTable" style="width:100%">
+                <tr>
+                    <th><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="Search for id.."></th>
+                    <th><input type="text" id="myInput2" onkeyup="myFunction2()" placeholder="Search for names.."></th>
+                    <th><input type="text" id="myInput3" onkeyup="myFunction3()" placeholder="Search for quantity.."></th>
+                    <th><input type="text" id="myInput4" onkeyup="myFunction4()" placeholder="Search for vender.."></th>
+                    <th><input type="text" id="myInput5" onkeyup="myFunction5()" placeholder="Search for customer.."></th>
+                    <th><input type="text" id="myInput6" onkeyup="myFunction6()" placeholder="Search for dates.."></th>
+         </tr>
+                   <tr>
+                       <th>ID</th>
+                       <th>Order Name</th>
+                       <th>Order Qty</th>
+                       <th>Order Vender</th>
+                       <th>Customer Name</th>
+                       <th>Order Date</th>
+                   </tr>
+                  {% for obj in order %}
+                     {% with obj.get_all_items.name|split:"," as obj1 and obj.get_all_items.vender|split:"," as obj2 %}
+                       {% for ob in obj1 %}
+                       <tbody >
+                        <tr>
+                            <td>{{ obj.id }}</td>
+                           
+                            {% with ob|split:" " as final %}
+                             {% for fin in final %}
+                             {% if forloop.first %}
+                             {% else %}
+                             <td>{{ fin }}</td>
+                             {% endif %}
+                             {% endfor %}
+                        {% endwith %}
+                            <td>{{ obj.user.username }}</td>
+                            <td>{{ obj.ordered_date }}</td>
+                            
+                            <td>{{ obj.duration}}</td>
+                        </tr>
+                        </tbody>
+                        {% endfor %}
+                        {% endwith %}
+                   {% endfor %}
+                   <tfoot>
+            
+        </tfoot>
+               </table>
+                             </div>
+            </div>
+             
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
+
+{% block custom_js %}
+<script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+    
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+    <script>
+        function myFunction1() {
+          // Declare variables
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput1");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+        
+          // Loop through all table rows, and hide those who don't match the search query
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+        </script>
+        <script>
+            function myFunction2() {
+              // Declare variables
+              var input, filter, table, tr, td, i, txtValue;
+              input = document.getElementById("myInput2");
+              filter = input.value.toUpperCase();
+              table = document.getElementById("myTable");
+              tr = table.getElementsByTagName("tr");
+            
+              // Loop through all table rows, and hide those who don't match the search query
+              for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                  txtValue = td.textContent || td.innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                }
+              }
+            }
+            </script>
+            <script>
+                function myFunction3() {
+                  // Declare variables
+                  var input, filter, table, tr, td, i, txtValue;
+                  input = document.getElementById("myInput3");
+                  filter = input.value.toUpperCase();
+                  table = document.getElementById("myTable");
+                  tr = table.getElementsByTagName("tr");
+                
+                  // Loop through all table rows, and hide those who don't match the search query
+                  for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[2];
+                    if (td) {
+                      txtValue = td.textContent || td.innerText;
+                      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                      } else {
+                        tr[i].style.display = "none";
+                      }
+                    }
+                  }
+                }
+                </script>
+                <script>
+                    function myFunction4() {
+                      // Declare variables
+                      var input, filter, table, tr, td, i, txtValue;
+                      input = document.getElementById("myInput4");
+                      filter = input.value.toUpperCase();
+                      table = document.getElementById("myTable");
+                      tr = table.getElementsByTagName("tr");
+                    
+                      // Loop through all table rows, and hide those who don't match the search query
+                      for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[3];
+                        if (td) {
+                          txtValue = td.textContent || td.innerText;
+                          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                          } else {
+                            tr[i].style.display = "none";
+                          }
+                        }
+                      }
+                    }
+                    </script>
+                    <script>
+                        function myFunction5() {
+                          // Declare variables
+                          var input, filter, table, tr, td, i, txtValue;
+                          input = document.getElementById("myInput5");
+                          filter = input.value.toUpperCase();
+                          table = document.getElementById("myTable");
+                          tr = table.getElementsByTagName("tr");
+                        
+                          // Loop through all table rows, and hide those who don't match the search query
+                          for (i = 0; i < tr.length; i++) {
+                            td = tr[i].getElementsByTagName("td")[4];
+                            if (td) {
+                              txtValue = td.textContent || td.innerText;
+                              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                              } else {
+                                tr[i].style.display = "none";
+                              }
+                            }
+                          }
+                        }
+                        </script>
+                        <script>
+                            function myFunction6() {
+                              // Declare variables
+                              var input, filter, table, tr, td, i, txtValue;
+                              input = document.getElementById("myInput6");
+                              filter = input.value.toUpperCase();
+                              table = document.getElementById("myTable");
+                              tr = table.getElementsByTagName("tr");
+                            
+                              // Loop through all table rows, and hide those who don't match the search query
+                              for (i = 0; i < tr.length; i++) {
+                                td = tr[i].getElementsByTagName("td")[5];
+                                if (td) {
+                                  txtValue = td.textContent || td.innerText;
+                                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                  } else {
+                                    tr[i].style.display = "none";
+                                  }
+                                }
+                              }
+                            }
+                            </script>
+{% endblock custom_js %}

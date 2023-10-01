@@ -1,0 +1,66 @@
+{% extends 'staff_template/base_template.html' %}
+{% block page_title %}
+Account 
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Activate Account</h3>
+              </div>
+
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" action="{% url 'staff_account_save' %}" method="post">
+                  {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control" name="username" value="{{ user.username }}" disabled="disabled">
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control" name="username" value="{{ user.email }}" disabled="disabled">
+                  </div>
+                   <div class="form-group">
+                    <label>License Number</label>
+                    <input type="text" class="form-control" name="license" value="{{ staff.license }}">
+                  </div>
+                  <div class="form-group">
+                    <label>Account Validity</label>
+                    <select class="form-control" name="Validity" id="session_year" value="{{ staff.acc_id }}">
+                        {% for pack in packs %}
+                          <option value="{{ pack.id }}">{{ pack.name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Amount:{{pack.price}}</option>
+                        {% endfor %}
+                    </select>
+                   </div>
+                   <div class="form-group">
+                      {% if messages %}
+                        {% include 'messages.html' %}
+                      {% endif %}
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary btn-block">Make Payment</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
+

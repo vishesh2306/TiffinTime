@@ -1,0 +1,145 @@
+{%extends 'customer_template/base_template.html' %}
+{% load filter_tags %}
+
+    {% block extra_head %}
+<head>
+
+    <!-- Basic page needs
+    ============================================ -->
+
+    <meta charset="utf-8">
+    <meta name="keywords"
+        content="html5 template, best html5 template, best html template, html5 basic template, multipurpose html5 template, multipurpose html template, creative html templates, creative html5 templates" />
+    <meta name="description"
+        content="eMarket is a powerful Multi-purpose HTML5 Template with clean and user friendly design. It is definite a great starter for any eCommerce web project." />
+    <meta name="author" content="Magentech">
+    <meta name="robots" content="index, follow" />
+
+    <!-- Mobile specific metas
+    ============================================ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Favicon
+    ============================================ -->
+
+    <link rel="shortcut icon" type="image/png" href="ico/favicon-16x16.png" />
+
+{% block custom_css %}
+    <!-- Libs CSS
+    ============================================ -->
+    {% load static %}
+    <link rel="stylesheet" href={% static "css1/bootstrap/css/bootstrap.min.css" %}>
+    <link href={% static "css1/font-awesome/css/font-awesome.min.css"%} rel="stylesheet">
+    <link href={% static "js/datetimepicker/bootstrap-datetimepicker.min.css"%} rel="stylesheet">
+    <link href={% static "js/owl-carousel/owl.carousel.css"%} rel="stylesheet">
+    <link href={% static "css1/themecss/lib.css"%} rel="stylesheet">
+    <link href={% static "js/jquery-ui/jquery-ui.min.css"%} rel="stylesheet">
+    <link href={% static "js/minicolors/miniColors.css"%} rel="stylesheet">
+
+    <!-- Theme CSS
+    ============================================ -->
+    <link href={% static "css1/themecss/so_searchpro.css"%} rel="stylesheet">
+    <link href={% static "css1/themecss/so_megamenu.css"%} rel="stylesheet">
+    <link href={% static "css1/themecss/so-categories.css"%} rel="stylesheet">
+    <link href={% static "css1/themecss/so-listing-tabs.css"%} rel="stylesheet">
+    <link href={% static "css1/themecss/so-newletter-popup.css"%} rel="stylesheet">
+
+    <link href={% static "css/footer/footer1.css"%} rel="stylesheet">
+    <link href={% static "css/header/header1.css"%} rel="stylesheet">
+    <link id="color_scheme" href={% static "css/theme.css"%} rel="stylesheet">
+    <link href={% static "css/responsive.css"%} rel="stylesheet">
+    {% endblock custom_css %}
+
+    <!-- Google web fonts
+    ============================================ -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700' rel='stylesheet'
+        type='text/css'>
+    <style type="text/css">
+        body {
+            font-family: 'Roboto', sans-serif
+        }
+    </style>
+
+</head>
+{% endblock extra_head %}
+ {% block main_content %}
+<body class="res layout-1 layout-subpage">
+
+
+        <!-- Main Container  -->
+        <div class="main-container container">
+            
+            <div class="row">
+                <!--Middle Part Start-->
+                <div id="content" class="col-sm-9">
+                    <h2 class="title">Order History</h2>
+                    <br><br>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <td class="text-center">Order ID</td>
+                                    <td class="text-left">Order description</td>
+                                    <td class="text-center">Qty</td>
+                                    <td class="text-center">Status</td>
+                                    <td class="text-center">Date Added</td>
+                                    <td class="text-right">Total</td>
+                                    <td class="text-right">View Details</td>
+                                    
+                                </tr>
+                            </thead>
+                            {% for obj in order %}
+                           {% with obj.get_all_items.name|split:"," as obj1 %}
+                       {% for ob in obj1 %}
+                            <tbody>
+                                <tr>
+                                <td class="text-center">#1565{{ obj.id }}</td>
+                                    <td>{{ obj.get_all_items.desc }}</td>
+                                    <td>{{ obj.get_all_items.qty }}</td>
+                                    <td class="text-center">Approved</td>
+                                    <td class="text-center">{{obj.ordered_date}}</td>
+                                    <td class="text-right">{{obj.payment.amount}}</td>
+                                    <td class="text-center"><a class="btn btn-info" title="" data-toggle="tooltip"
+                                            href="customer_order_information?order_id={{obj.id}}" data-original-title="View"><i
+                                                class="fa fa-eye"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        {% endwith %}
+                   {% endfor %}
+                        </table>
+                    </div>
+
+                </div>
+                <!--Middle Part End-->
+                
+{% endblock main_content %}
+
+{% block custom_js %}
+{% endblock custom_js %}
+
+{% block extra_scripts %}
+
+    <!-- Include Libs & Plugins
+	============================================ -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/owl-carousel/owl.carousel.js"></script>
+    <script type="text/javascript" src="js/themejs/libs.js"></script>
+    <script type="text/javascript" src="js/unveil/jquery.unveil.js"></script>
+    <script type="text/javascript" src="js/countdown/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="js/dcjqaccordion/jquery.dcjqaccordion.2.8.min.js"></script>
+    <script type="text/javascript" src="js/datetimepicker/moment.js"></script>
+    <script type="text/javascript" src="js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui/jquery-ui.min.js"></script>
+
+
+   
+
+
+</body>
+{% endblock extra_scripts %}
+
+</html>

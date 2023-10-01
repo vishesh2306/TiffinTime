@@ -1,0 +1,220 @@
+{%extends 'customer_template/base_template.html' %}
+{% load filter_tags %}
+
+    {% block extra_head %}
+<head>
+
+    <!-- Basic page needs
+    ============================================ -->
+
+    <meta charset="utf-8">
+    <meta name="keywords"
+        content="html5 template, best html5 template, best html template, html5 basic template, multipurpose html5 template, multipurpose html template, creative html templates, creative html5 templates" />
+    <meta name="description"
+        content="eMarket is a powerful Multi-purpose HTML5 Template with clean and user friendly design. It is definite a great starter for any eCommerce web project." />
+    <meta name="author" content="Magentech">
+    <meta name="robots" content="index, follow" />
+
+    <!-- Mobile specific metas
+    ============================================ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Favicon
+    ============================================ -->
+
+    <link rel="shortcut icon" type="image/png" href="ico/favicon-16x16.png" />
+
+{% block custom_css %}
+    <!-- Libs CSS
+    ============================================ -->
+    {% load static %}
+    <link rel="stylesheet" href={% static "css1/bootstrap/css/bootstrap.min.css" %}>
+    <link href={% static "css1/font-awesome/css/font-awesome.min.css"%} rel="stylesheet">
+    <link href={% static "js/datetimepicker/bootstrap-datetimepicker.min.css"%} rel="stylesheet">
+    <link href={% static "js/owl-carousel/owl.carousel.css"%} rel="stylesheet">
+    <link href={% static "css1/themecss/lib.css"%} rel="stylesheet">
+    <link href={% static "js/jquery-ui/jquery-ui.min.css"%} rel="stylesheet">
+    <link href={% static "js/minicolors/miniColors.css"%} rel="stylesheet">
+
+    <!-- Theme CSS
+    ============================================ -->
+    <link href={% static "css1/themecss/so_searchpro.css"%} rel="stylesheet">
+    <link href={% static "css1/themecss/so_megamenu.css"%} rel="stylesheet">
+    <link href={% static "css1/themecss/so-categories.css"%} rel="stylesheet">
+    <link href={% static "css1/themecss/so-listing-tabs.css"%} rel="stylesheet">
+    <link href={% static "css1/themecss/so-newletter-popup.css"%} rel="stylesheet">
+
+    <link href={% static "css/footer/footer1.css"%} rel="stylesheet">
+    <link href={% static "css/header/header1.css"%} rel="stylesheet">
+    <link id="color_scheme" href={% static "css/theme.css"%} rel="stylesheet">
+    <link href={% static "css/responsive.css"%} rel="stylesheet">
+    {% endblock custom_css %}
+
+    <!-- Google web fonts
+    ============================================ -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700' rel='stylesheet'
+        type='text/css'>
+    <style type="text/css">
+        body {
+            font-family: 'Roboto', sans-serif
+        }
+    </style>
+
+</head>
+{% endblock extra_head %}
+    {% block main_content %}
+        <div class="main-container container">
+
+
+            <div class="row">
+                <!--Middle Part Start-->
+                <div id="content" class="col-sm-9">
+                    <h2 class="title">Order Information</h2>
+
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <td colspan="2" class="text-left">Order Details</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="width: 50%;" class="text-left"> <b>Order ID:</b> #1565{{order.id}}
+                                    <br>
+                                    <b>Date Added:</b> 20/06/2016</td>
+                                <td style="width: 50%;" class="text-left"> <b>Payment Method:</b> Card Payment 
+                                    <br>
+                                    <b>Delivery Method:</b>Delivery Boy</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <td style="width: 50%; vertical-align: top;" class="text-left">Payment Address</td>
+                                <td style="width: 50%; vertical-align: top;" class="text-left">Delivery Address</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-left">{{user.username}}
+                                    <br>{{address.street_address}}
+                                    <br>{{address.apartment_address}}
+                                    <br>{{address.country}}
+                                    <br>{{address.zip}}</td>
+                                <td class="text-left">{{user.username}}
+                                    <br>{{address.street_address}}
+                                    <br>{{address.apartment_address}}
+                                    <br>{{address.country}}
+                                    <br>{{address.zip}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <td class="text-left">Product Name</td>
+                                    <td class="text-left">Duration</td>
+                                    <td class="text-right">Quantity</td>
+                                    <td class="text-right">Price</td>
+                                    <td class="text-right">Total</td>
+                                    <td style="width: 20px;"></td>
+                                </tr>
+                            </thead>
+                            {% for item in items %}
+                                <tr>
+                                    <td class="text-left">{{item.item.name}}</td>
+                                    <td class="text-left">{{item.duration.name}}</td>
+                                    <td class="text-right">{{item.quantity}}</td>
+                                    <td class="text-right">{% if item.item.discount_price %}{{item.item.discount_price}}{% else %}{{item.item.price}}{% endif %}</td>
+                                    <td class="text-right">{{item.get_final_price}}</td>
+                                    <td style="white-space: nowrap;" class="text-right"> <a class="btn btn-primary"
+                                            title="" data-toggle="tooltip" href="/core/add-to-cart/{{ item.item.id }}/" data-original-title="Reorder"><i
+                                                class="fa fa-shopping-cart"></i></a>
+                                    </td>
+                                   {% endfor %}
+                                </tr>
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td class="text-right"><b>Delivery Charge</b>
+                                    </td>
+                                    <td class="text-right">{{deli}}</td>
+                                    <td></td>
+                                    
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td class="text-right"><b>Total</b>
+                                    </td>
+                                    <td class="text-right">{{order.payment.amount}}</td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                             
+                        </table>
+                    </div>
+                    <h3>Order History</h3>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <td class="text-left">Date Added</td>
+                                <td class="text-left">Status</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-left">{{order.ordered_date.date}}</td>
+                                <td class="text-left">Processing</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">{{order.ordered_date.date}}</td>
+                                <td class="text-left">Approved</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">{{order.ordered_date.date}}</td>
+                                <td class="text-left">Active</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="buttons clearfix">
+                        <div class="pull-right"><a class="btn btn-primary" href="/core">Menu</a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <!--Middle Part End-->
+    {% endblock main_content %}
+
+{% block custom_js %}
+{% endblock custom_js %}
+
+{% block extra_scripts %}
+
+    <!-- Include Libs & Plugins
+	============================================ -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/owl-carousel/owl.carousel.js"></script>
+    <script type="text/javascript" src="js/themejs/libs.js"></script>
+    <script type="text/javascript" src="js/unveil/jquery.unveil.js"></script>
+    <script type="text/javascript" src="js/countdown/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="js/dcjqaccordion/jquery.dcjqaccordion.2.8.min.js"></script>
+    <script type="text/javascript" src="js/datetimepicker/moment.js"></script>
+    <script type="text/javascript" src="js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui/jquery-ui.min.js"></script>
+
+
+   
+
+
+</body>
+{% endblock extra_scripts %}
+
+</html>
+                
